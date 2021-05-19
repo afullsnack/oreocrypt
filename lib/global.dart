@@ -89,7 +89,7 @@ final List<Story> stories = [
     postTime: '20 hrs',
     media: MediaType.image,
     duration: Duration(seconds: 2),
-    user: User(name: 'Moniq', profileImg: 'link/to/img'),
+    user: User(name: 'Kemi', profileImg: 'link/to/img'),
   ),
 ];
 

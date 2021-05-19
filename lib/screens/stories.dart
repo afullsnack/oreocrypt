@@ -4,11 +4,20 @@ import 'package:oreocrypt/components/storyring.dart';
 import 'package:oreocrypt/components/storytile.dart';
 import 'package:oreocrypt/global.dart';
 import 'package:oreocrypt/models/story_model.dart';
+import 'package:oreocrypt/models/user_model.dart';
 
 class Stories extends StatelessWidget {
+  void _getShowStory() {
+    // List<Story> showStories;
+    stories.sort((a, b) => a.user.name.compareTo(b.user.name));
+    print(stories);
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    _getShowStory();
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -194,13 +203,23 @@ class Stories extends StatelessWidget {
               scrollDirection: Axis.vertical,
               itemCount: stories.length,
               itemBuilder: (context, index) {
-                final Story story = stories[index];
+                List<Story> story = [];
+                User currentStoryUser = stories[index].user;
+
+                for (var i = 0; i < stories.length; i++) {
+                  // check if multiple stories have one user
+                  if (currentStoryUser.name == stories[i].user.name) {
+                    story.add(stories[i]);
+                    continue;
+                  }
+                }
                 return GestureDetector(
                     onTap: () {
                       print('Full story screen entered');
-                      Navigator.of(context).pushNamed('full_story');
+                      Navigator.of(context)
+                          .pushNamed('full_story', arguments: story);
                     },
-                    child: StoriesListTile(data: story));
+                    child: StoriesListTile(userData: currentStoryUser));
               },
             ),
           )

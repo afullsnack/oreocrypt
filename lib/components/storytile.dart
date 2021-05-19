@@ -2,11 +2,12 @@ import 'package:crypto_font_icons/crypto_font_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:oreocrypt/components/storyring.dart';
 import 'package:oreocrypt/models/story_model.dart';
+import 'package:oreocrypt/models/user_model.dart';
 
 class StoriesListTile extends StatefulWidget {
-  final Story data;
+  final User userData;
 
-  const StoriesListTile({Key key, this.data}) : super(key: key);
+  const StoriesListTile({Key key, this.userData}) : super(key: key);
 
   @override
   _StoriesListTileState createState() => _StoriesListTileState();
@@ -41,7 +42,7 @@ class _StoriesListTileState extends State<StoriesListTile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.data.user.name,
+                      widget.userData.name,
                       maxLines: 1,
                       style: TextStyle(
                         fontSize: 20,
@@ -49,16 +50,6 @@ class _StoriesListTileState extends State<StoriesListTile> {
                       ),
                     ),
                     SizedBox(height: 6),
-                    Opacity(
-                      opacity: .6,
-                      child: Text(
-                        '${widget.data.postTime} ago',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ],
