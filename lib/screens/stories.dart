@@ -9,8 +9,25 @@ import 'package:oreocrypt/models/user_model.dart';
 class Stories extends StatelessWidget {
   void _getShowStory() {
     // List<Story> showStories;
-    stories.sort((a, b) => a.user.name.compareTo(b.user.name));
-    print(stories);
+
+    // for (var story in stories) {
+    //   var currentName = story.user.name;
+
+    //   for (var i = 0; i < stories.length; i++) {
+    //     if (currentName == stories[i].user.name) {
+    //       showStories.add(stories[i]);
+    //     }
+    //   }
+    // }
+
+    var compList = <String>[];
+    for (var item in stories) {
+      compList.add(item.user.name);
+    }
+
+    compList.reduce((value, element) => value == element ? compList : '');
+
+    print([...new Set.from(compList)]);
   }
 
   @override
