@@ -7,7 +7,7 @@ import 'package:oreocrypt/models/story_model.dart';
 import 'package:oreocrypt/models/user_model.dart';
 
 class Stories extends StatelessWidget {
-  void _getShowStory() {
+  List<String> _getShowStory() {
     // List<Story> showStories;
 
     // for (var story in stories) {
@@ -25,7 +25,7 @@ class Stories extends StatelessWidget {
       compList.add(item.user.name);
     }
 
-    compList.reduce((value, element) => value == element ? compList : '');
+    return [...new Set.from(compList)];
 
     print([...new Set.from(compList)]);
   }
@@ -33,7 +33,7 @@ class Stories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    _getShowStory();
+    final usersWithStories = _getShowStory();
 
     return Scaffold(
       body: Column(
@@ -69,8 +69,8 @@ class Stories extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       StoryRing(
-                        radius: 35,
-                        ringColor: Colors.white,
+                        radius: 55,
+                        ringColors: [Colors.white, Colors.grey[400]],
                       ),
                       Icon(
                         CupertinoIcons.bell,
@@ -218,25 +218,26 @@ class Stories extends StatelessWidget {
               shrinkWrap: false,
               padding: EdgeInsets.all(0),
               scrollDirection: Axis.vertical,
-              itemCount: stories.length,
+              itemCount: usersWithStories.length,
               itemBuilder: (context, index) {
                 List<Story> story = [];
                 User currentStoryUser = stories[index].user;
 
                 for (var i = 0; i < stories.length; i++) {
                   // check if multiple stories have one user
-                  if (currentStoryUser.name == stories[i].user.name) {
-                    story.add(stories[i]);
-                    continue;
-                  }
+                  // if (usersWithStories[i] == stories[i].user.name) {
+                  story.add(stories[i]);
+                  //   continue;
+                  // }
                 }
                 return GestureDetector(
-                    onTap: () {
-                      print('Full story screen entered');
-                      Navigator.of(context)
-                          .pushNamed('full_story', arguments: story);
-                    },
-                    child: StoriesListTile(userData: currentStoryUser));
+                  onTap: () {
+                    print('Full story screen entered');
+                    Navigator.of(context)
+                        .pushNamed('full_story', arguments: story);
+                  },
+                  child: StoriesListTile(userName: usersWithStories[index]),
+                );
               },
             ),
           )

@@ -5,9 +5,9 @@ import 'package:oreocrypt/models/story_model.dart';
 import 'package:oreocrypt/models/user_model.dart';
 
 class StoriesListTile extends StatefulWidget {
-  final User userData;
+  final String userName;
 
-  const StoriesListTile({Key key, this.userData}) : super(key: key);
+  const StoriesListTile({Key key, this.userName}) : super(key: key);
 
   @override
   _StoriesListTileState createState() => _StoriesListTileState();
@@ -34,15 +34,15 @@ class _StoriesListTileState extends State<StoriesListTile> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 StoryRing(
-                  radius: 28,
-                  ringColor: Colors.deepPurpleAccent[200],
+                  radius: 40,
+                  ringColors: [Colors.deepPurpleAccent[200], Colors.amber[600]],
                 ),
                 SizedBox(width: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.userData.name,
+                      widget.userName,
                       maxLines: 1,
                       style: TextStyle(
                         fontSize: 20,

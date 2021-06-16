@@ -13,7 +13,7 @@ final List<Map<String, dynamic>> assets = [
   {
     "name": "Ethereum",
     "code": "ETH",
-    "amount": 620.4,
+    "amount": 520.4,
   },
   {
     "name": "Litecoin",
@@ -28,7 +28,7 @@ final List<Map<String, dynamic>> assets = [
   {
     "name": "Dashcoin",
     "code": "DSH",
-    "amount": 41.43,
+    "amount": 441.43,
   },
   {
     "name": "Ripple",
@@ -36,9 +36,9 @@ final List<Map<String, dynamic>> assets = [
     "amount": 210.7,
   },
   {
-    "name": "Tron",
-    "code": "TRX",
-    "amount": 740.9,
+    "name": "USD Tether",
+    "code": "USDT",
+    "amount": 640.9,
   },
 ];
 

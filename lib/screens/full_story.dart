@@ -67,62 +67,72 @@ class _StoryScreenState extends State<StoryScreen>
         onTapDown: (details) => _onTapDown(details, story),
         child: Stack(
           children: <Widget>[
-            PageView.builder(
-              controller: _pageController,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: widget.stories.length,
-              itemBuilder: (context, i) {
-                final Story story = widget.stories[i];
-                switch (story.media) {
-                  case MediaType.image:
-                    return CachedNetworkImage(
-                      imageUrl: story.url,
-                      fit: BoxFit.cover,
-                    );
-                  case MediaType.video:
-                    if (_videoController != null &&
-                        _videoController.value.initialized) {
-                      return FittedBox(
-                        fit: BoxFit.cover,
-                        child: SizedBox(
-                          width: _videoController.value.size.width,
-                          height: _videoController.value.size.height,
-                          child: VideoPlayer(_videoController),
-                        ),
-                      );
-                    }
-                    break;
-                  case MediaType.text:
-                    return Container(
-                      width: double.infinity,
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.brown,
-                      ),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Text(
-                            story.url,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(35)),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * .83,
+                  child: PageView.builder(
+                    controller: _pageController,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: widget.stories.length,
+                    itemBuilder: (context, i) {
+                      final Story story = widget.stories[i];
+                      switch (story.media) {
+                        case MediaType.image:
+                          return CachedNetworkImage(
+                            imageUrl: story.url,
+                            fit: BoxFit.cover,
+                          );
+                        case MediaType.video:
+                          if (_videoController != null &&
+                              _videoController.value.initialized) {
+                            return FittedBox(
+                              fit: BoxFit.cover,
+                              child: SizedBox(
+                                width: _videoController.value.size.width,
+                                height: _videoController.value.size.height,
+                                child: VideoPlayer(_videoController),
+                              ),
+                            );
+                          }
+                          break;
+                        case MediaType.text:
+                          return Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.brown,
                             ),
-                          ),
-                        ),
-                      ),
-                    );
-                    break;
-                }
-                return const SizedBox.shrink();
-              },
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Text(
+                                  story.url,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                          break;
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  ),
+                ),
+              ),
             ),
             Positioned(
-              top: 40.0,
-              left: 10.0,
-              right: 10.0,
+              top: 55.0,
+              left: 18.0,
+              right: 18.0,
               child: Column(
                 children: <Widget>[
                   Row(
@@ -140,6 +150,9 @@ class _StoryScreenState extends State<StoryScreen>
                         })
                         .values
                         .toList(),
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(

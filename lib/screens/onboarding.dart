@@ -61,7 +61,7 @@ class Onboarding extends StatelessWidget {
               child: TextButton(
                 onPressed: () {
                   print('Go to stories screen');
-                  Navigator.of(context).pushReplacementNamed('stories');
+                  Navigator.of(context).pushReplacementNamed('home');
                 },
                 child: Text(
                   'Get Started',

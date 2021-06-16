@@ -3,14 +3,22 @@ import 'package:oreocrypt/global.dart';
 
 class StoryRing extends StatelessWidget {
   final double radius;
-  final Color ringColor;
-  StoryRing({@required this.radius, @required this.ringColor});
+  final List<Color> ringColors;
+  StoryRing({@required this.radius, @required this.ringColors});
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundColor: ringColor,
-      radius: radius,
+    return Container(
+      width: radius,
+      height: radius,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: ringColors),
+      ),
+      // radius: radius,
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child: Container(
@@ -19,7 +27,7 @@ class StoryRing extends StatelessWidget {
           child: Icon(
             Icons.person_outlined,
             color: Colors.white,
-            size: 30,
+            size: radius / 2,
           ),
           decoration: BoxDecoration(
             shape: BoxShape.circle,

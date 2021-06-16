@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:oreocrypt/components/coinpill.dart';
 import 'package:oreocrypt/global.dart';
 import 'package:intl/intl.dart';
+import 'package:oreocrypt/screens/full_coinpill.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,15 +12,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   var formater = NumberFormat.decimalPattern('hi');
 
-  var totalBalance = 0;
-
   @override
   Widget build(BuildContext context) {
-    assets.map((asset) {
-      print(asset["amount"]);
-      totalBalance += asset["amount"];
-    });
-    print(totalBalance);
+    // print(totalBalance);
     return Scaffold(
       backgroundColor: bgColor,
       // appBar: AppBar(title: Text('Bitcoin Home')),
@@ -38,17 +33,18 @@ class _HomeState extends State<Home> {
                       Text(
                         'YOUR BALANCE',
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: Colors.white.withOpacity(.5),
                           fontSize: 18,
                           letterSpacing: 1.8,
-                          fontWeight: FontWeight.w800,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                       SizedBox(height: 10),
                       RichText(
                         text: TextSpan(
                           text: '\$ ',
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(
+                              fontSize: 23.5, fontWeight: FontWeight.w300),
                           children: [
                             TextSpan(
                               text: '${formater.format(14562)}.',
@@ -61,9 +57,9 @@ class _HomeState extends State<Home> {
                             TextSpan(
                               text: '89',
                               style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 32,
-                                fontWeight: FontWeight.w600,
+                                color: Colors.white.withOpacity(.5),
+                                fontSize: 35,
+                                fontWeight: FontWeight.w200,
                               ),
                             )
                           ],
@@ -82,18 +78,41 @@ class _HomeState extends State<Home> {
                     ],
                   )),
               Container(
-                height: 390.0,
+                height: 400.0,
                 width: double.infinity,
                 // flex: 3,
                 // fit: FlexFit.tight,
                 child: ListView.builder(
                   clipBehavior: Clip.none,
                   scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.all(30.0),
+                  padding: EdgeInsets.all(10.0),
                   itemCount: assets.length,
                   itemBuilder: (context, index) {
-                    return CoinPill(
-                      asset: assets[index],
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            transitionDuration: Duration(seconds: 2),
+                            transitionsBuilder:
+                                (context, animation, secAnimation, child) {
+                              animation = CurvedAnimation(
+                                  curve: Curves.easeInOut, parent: animation);
+                              return ScaleTransition(
+                                scale: animation,
+                                alignment: Alignment.bottomCenter,
+                                child: child,
+                              );
+                            },
+                            pageBuilder: (context, animation, secAnimation) {
+                              return FullCoinPill();
+                            },
+                          ),
+                        );
+                      },
+                      child: CoinPill(
+                        asset: assets[index],
+                      ),
                     );
                   },
                 ),
@@ -104,19 +123,19 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Icon(
-                      Icons.airplanemode_active,
+                      Icons.bar_chart,
                       color: Colors.white,
-                      size: 45,
+                      size: 40,
                     ),
                     Icon(
-                      Icons.airport_shuttle_sharp,
-                      color: Colors.white,
-                      size: 45,
+                      Icons.bubble_chart_outlined,
+                      color: Colors.white.withOpacity(.5),
+                      size: 30,
                     ),
                     Icon(
-                      Icons.map_rounded,
-                      color: Colors.white,
-                      size: 45,
+                      Icons.settings,
+                      color: Colors.white.withOpacity(.5),
+                      size: 30,
                     ),
                   ],
                 ),
