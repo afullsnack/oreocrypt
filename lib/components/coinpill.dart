@@ -36,7 +36,7 @@ class _CoinPillState extends State<CoinPill> {
                             : widget.asset["code"] == "USDT"
                                 ? CryptoFontIcons.USDT
                                 : null;
-    print(heightFromBalance);
+    // print(heightFromBalance);
 
     return SizedBox(
       // width: double.infinity,
