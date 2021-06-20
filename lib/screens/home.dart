@@ -7,6 +7,7 @@ import 'package:oreocrypt/screens/activity.dart';
 
 import 'package:oreocrypt/screens/portfolio.dart';
 import 'package:oreocrypt/screens/profile.dart';
+import 'package:oreocrypt/screens/stories.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -46,42 +47,40 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: bgColor,
       // appBar: AppBar(title: Text('Bitcoin Home')),
-      body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 4,
-                child: PageView(
-                  clipBehavior: Clip.antiAlias,
-                  physics: NeverScrollableScrollPhysics(),
-                  onPageChanged: (page) {
-                    setState(() {
-                      _selectedPage = page;
-                    });
-                  },
-                  controller: _pageController,
-                  children: [
-                    PortfolioScreen(),
-                    ActivityScreen(),
-                    ProfileScreen(),
-                  ],
-                ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 4,
+              child: PageView(
+                clipBehavior: Clip.antiAlias,
+                physics: NeverScrollableScrollPhysics(),
+                onPageChanged: (page) {
+                  setState(() {
+                    _selectedPage = page;
+                  });
+                },
+                controller: _pageController,
+                children: [
+                  PortfolioScreen(),
+                  Stories(),
+                  ProfileScreen(),
+                ],
               ),
-              Expanded(
-                flex: 1,
-                child: Navigation(
-                  pageIndex: _selectedPage,
-                  onPageChange: (pageNum) {
-                    _changePage(pageNum);
-                  },
-                ),
-              )
-            ],
-          ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Navigation(
+                pageIndex: _selectedPage,
+                onPageChange: (pageNum) {
+                  _changePage(pageNum);
+                },
+              ),
+            )
+          ],
         ),
       ),
     );

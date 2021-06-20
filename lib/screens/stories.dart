@@ -35,13 +35,15 @@ class Stories extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final usersWithStories = _getShowStory();
 
-    return Scaffold(
-      body: Column(
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             width: double.infinity,
-            height: size.height * .47,
+            height: size.height * .39,
             child: Stack(
               children: [
                 Align(
@@ -50,7 +52,7 @@ class Stories extends StatelessWidget {
                   heightFactor: double.infinity,
                   child: Container(
                     width: double.infinity,
-                    height: size.height * .42,
+                    height: size.height * .35,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                         bottomRight: Radius.circular(35),
@@ -61,7 +63,7 @@ class Stories extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: size.height * .09,
+                  top: size.height * .055,
                   left: 35,
                   right: 35,
                   child: Row(
@@ -81,7 +83,7 @@ class Stories extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: size.height * .2,
+                  top: size.height * .14,
                   left: 35,
                   right: 35,
                   child: Column(
@@ -110,7 +112,7 @@ class Stories extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: size.height * .32,
+                  top: size.height * .25,
                   left: 35,
                   right: 35,
                   child: Row(
@@ -208,6 +210,7 @@ class Stories extends StatelessWidget {
                 textAlign: TextAlign.start,
                 style: TextStyle(
                   fontSize: 23,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
