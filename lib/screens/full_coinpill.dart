@@ -12,7 +12,7 @@ class FullCoinPill extends StatefulWidget {
 
 class _FullCoinPillState extends State<FullCoinPill>
     with TickerProviderStateMixin {
-  double top, left, width, height;
+  double top, left, width, height, borderRadius;
   @override
   void initState() {
     super.initState();
@@ -20,6 +20,7 @@ class _FullCoinPillState extends State<FullCoinPill>
     left = widget.position.dx;
     width = widget.size.width;
     height = widget.size.height;
+    borderRadius = 100.0;
     print('Full Coin Pill Inited');
     _initAnimation();
   }
@@ -44,6 +45,7 @@ class _FullCoinPillState extends State<FullCoinPill>
       top = widget.position.dy;
       left = widget.position.dx;
       width = widget.size.width;
+      borderRadius = 100.0;
     });
   }
 
@@ -61,6 +63,7 @@ class _FullCoinPillState extends State<FullCoinPill>
                 width = (MediaQuery.of(context).size.width * .9);
                 left = MediaQuery.of(context).size.width / 2 -
                     (((MediaQuery.of(context).size.width * .9) - 10) / 2);
+                borderRadius = 20.0;
               });
             },
             duration: Duration(milliseconds: 300),
@@ -74,7 +77,7 @@ class _FullCoinPillState extends State<FullCoinPill>
                 width: width - 10,
                 height: height,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(borderRadius),
                   color: Colors.white,
                 ),
               ),
