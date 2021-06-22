@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:oreocrypt/components/navigation.dart';
 import 'package:oreocrypt/global.dart';
 
-import 'package:oreocrypt/screens/activity.dart';
+// import 'package:oreocrypt/screens/activity.dart';
 
 import 'package:oreocrypt/screens/portfolio.dart';
 import 'package:oreocrypt/screens/profile.dart';
@@ -17,6 +17,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with TickerProviderStateMixin {
   int _selectedPage = 0;
   PageController _pageController;
+  Offset pillPosition;
+  Size pillSize;
 
   void _changePage(int pageNum) {
     setState(() {
@@ -27,6 +29,22 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         curve: Curves.fastLinearToSlowEaseIn,
       );
     });
+  }
+
+  Map<String, dynamic> getCoinPillPosition(GlobalKey key) {
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    final RenderBox box = key.currentContext.findRenderObject();
+
+    setState(() {
+      pillPosition = box.localToGlobal(Offset.zero);
+      pillSize = box.size;
+    });
+
+    return {"position": pillPosition, "size": pillSize};
+
+    // print(
+    //     '\n W: ${pillSize.width} \n H: ${pillSize.height} \n X: ${pillPosition.dx} \n Y: ${pillPosition.dy}');
+    // });
   }
 
   @override
@@ -54,7 +72,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
-              flex: 4,
+              flex: 7,
               child: PageView(
                 clipBehavior: Clip.antiAlias,
                 physics: NeverScrollableScrollPhysics(),
@@ -65,8 +83,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 },
                 controller: _pageController,
                 children: [
-                  PortfolioScreen(),
-                  Stories(),
+                  PortfolioScreen(
+                    getPositionSize: (key) => getCoinPillPosition(key),
+                  ),
+                  StoriesScreen(),
                   ProfileScreen(),
                 ],
               ),

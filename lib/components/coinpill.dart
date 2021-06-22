@@ -4,8 +4,10 @@ import 'package:oreocrypt/global.dart';
 
 class CoinPill extends StatefulWidget {
   final Map asset;
+  final Key containerkey;
 
-  CoinPill({Key key, this.asset}) : super(key: key);
+  CoinPill({Key key, this.asset, @required this.containerkey})
+      : super(key: key);
 
   @override
   _CoinPillState createState() => _CoinPillState();
@@ -44,12 +46,13 @@ class _CoinPillState extends State<CoinPill> {
       child: Stack(alignment: AlignmentDirectional.centerStart, children: [
         Container(
           // width: 90.0,
+          key: widget.containerkey,
           height: (heightFromBalance * 3) < 100 ? 120 : heightFromBalance * 3,
           padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 25.0),
           margin: EdgeInsets.all(10.0),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(100),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

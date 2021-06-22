@@ -6,7 +6,7 @@ import 'package:oreocrypt/global.dart';
 import 'package:oreocrypt/models/story_model.dart';
 import 'package:oreocrypt/models/user_model.dart';
 
-class Stories extends StatelessWidget {
+class StoriesScreen extends StatelessWidget {
   List<String> _getShowStory() {
     // List<Story> showStories;
 

@@ -5,7 +5,8 @@ import 'package:oreocrypt/screens/full_coinpill.dart';
 import 'package:oreocrypt/global.dart';
 
 class PortfolioScreen extends StatelessWidget {
-  const PortfolioScreen({Key key}) : super(key: key);
+  final Function getPositionSize;
+  const PortfolioScreen({Key key, this.getPositionSize}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,30 +83,38 @@ class PortfolioScreen extends StatelessWidget {
                 padding: EdgeInsets.all(10.0),
                 itemCount: assets.length,
                 itemBuilder: (context, index) {
+                  final key = new GlobalObjectKey(index);
                   return GestureDetector(
-                    onTap: () {
+                    onTap: () async {
+                      var data = await getPositionSize(key);
+                      print(data["position"]);
                       Navigator.push(
                         context,
                         PageRouteBuilder(
-                          transitionDuration: Duration(seconds: 2),
+                          transitionDuration: Duration(milliseconds: 800),
+                          reverseTransitionDuration:
+                              Duration(milliseconds: 800),
                           transitionsBuilder:
                               (context, animation, secAnimation, child) {
                             animation = CurvedAnimation(
                                 curve: Curves.easeInOut, parent: animation);
-                            return ScaleTransition(
-                              scale: animation,
-                              alignment: Alignment.bottomCenter,
+                            return FadeTransition(
+                              opacity: animation,
                               child: child,
                             );
                           },
                           pageBuilder: (context, animation, secAnimation) {
-                            return FullCoinPill();
+                            return FullCoinPill(
+                              size: data["size"],
+                              position: data["position"],
+                            );
                           },
                         ),
                       );
                     },
                     child: CoinPill(
                       asset: assets[index],
+                      containerkey: key,
                     ),
                   );
                 },

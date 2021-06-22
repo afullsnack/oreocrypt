@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'onboard': (context) => Onboarding(),
         'home': (context) => Home(),
-        'stories': (context) => Stories(),
+        'stories': (context) => StoriesScreen(),
         'full_story': (context) => StoryScreen(stories: stories2),
         // 'activity': (context) => ActivityScreen(),
         // 'profile': (context) => ProfileScreen(),
