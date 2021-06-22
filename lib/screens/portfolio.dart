@@ -91,9 +91,9 @@ class PortfolioScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         PageRouteBuilder(
-                          transitionDuration: Duration(milliseconds: 800),
+                          transitionDuration: Duration(milliseconds: 100),
                           reverseTransitionDuration:
-                              Duration(milliseconds: 800),
+                              Duration(milliseconds: 500),
                           transitionsBuilder:
                               (context, animation, secAnimation, child) {
                             animation = CurvedAnimation(

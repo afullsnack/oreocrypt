@@ -34,9 +34,7 @@ class _FullCoinPillState extends State<FullCoinPill>
     await Future.delayed(Duration(milliseconds: 100));
     setState(() {
       top = 100;
-      left = (MediaQuery.of(context).size.width / 2) -
-          ((MediaQuery.of(context).size.width * .8) / 2);
-      width = MediaQuery.of(context).size.width * .8;
+      left = (MediaQuery.of(context).size.width / 2) - (width / 2);
     });
   }
 
@@ -58,14 +56,21 @@ class _FullCoinPillState extends State<FullCoinPill>
           AnimatedPositioned(
             top: top,
             left: left,
-            duration: Duration(milliseconds: 500),
+            onEnd: () {
+              setState(() {
+                width = (MediaQuery.of(context).size.width * .9);
+                left = MediaQuery.of(context).size.width / 2 -
+                    (((MediaQuery.of(context).size.width * .9) - 10) / 2);
+              });
+            },
+            duration: Duration(milliseconds: 300),
             child: GestureDetector(
               onTap: () {
                 _reversAnimation();
                 Navigator.pop(context);
               },
               child: AnimatedContainer(
-                duration: Duration(milliseconds: 500),
+                duration: Duration(milliseconds: 300),
                 width: width - 10,
                 height: height,
                 decoration: BoxDecoration(
