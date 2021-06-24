@@ -12,7 +12,8 @@ class FullCoinPill extends StatefulWidget {
 
 class _FullCoinPillState extends State<FullCoinPill>
     with TickerProviderStateMixin {
-  double top, left, width, height, borderRadius;
+  double top, left, width, height, borderRadius, opacity;
+  dynamic boxShadow;
   @override
   void initState() {
     super.initState();
@@ -21,6 +22,8 @@ class _FullCoinPillState extends State<FullCoinPill>
     width = widget.size.width;
     height = widget.size.height;
     borderRadius = 100.0;
+    boxShadow = null;
+    opacity = 0;
     print('Full Coin Pill Inited');
     _initAnimation();
   }
@@ -45,6 +48,7 @@ class _FullCoinPillState extends State<FullCoinPill>
       top = widget.position.dy;
       left = widget.position.dx;
       width = widget.size.width;
+      height = widget.size.height;
       borderRadius = 100.0;
     });
   }
@@ -55,31 +59,56 @@ class _FullCoinPillState extends State<FullCoinPill>
       backgroundColor: Colors.black45,
       body: Stack(
         children: [
+          Positioned(
+            bottom: 150,
+            left: MediaQuery.of(context).size.width / 2 -
+                ((MediaQuery.of(context).size.width * .91) / 2),
+            child: AnimatedOpacity(
+              duration: Duration(milliseconds: 100),
+              opacity: opacity,
+              child: Container(
+                width: MediaQuery.of(context).size.width * .91,
+                height: MediaQuery.of(context).size.height * .6,
+                decoration: BoxDecoration(
+                  color: Colors.amberAccent[100],
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ),
+          ),
           AnimatedPositioned(
             top: top,
             left: left,
             onEnd: () {
               setState(() {
-                width = (MediaQuery.of(context).size.width * .9);
+                width = (MediaQuery.of(context).size.width * .85);
                 left = MediaQuery.of(context).size.width / 2 -
-                    (((MediaQuery.of(context).size.width * .9) - 10) / 2);
+                    (((MediaQuery.of(context).size.width * .85) - 10) / 2);
+                height = MediaQuery.of(context).size.height * .23;
                 borderRadius = 20.0;
               });
             },
-            duration: Duration(milliseconds: 300),
+            duration: Duration(milliseconds: 100),
             child: GestureDetector(
               onTap: () {
                 _reversAnimation();
                 Navigator.pop(context);
               },
               child: AnimatedContainer(
-                duration: Duration(milliseconds: 300),
+                duration: Duration(milliseconds: 100),
                 width: width - 10,
                 height: height,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(borderRadius),
                   color: Colors.white,
+                  boxShadow: boxShadow,
                 ),
+                onEnd: () {
+                  setState(() {
+                    boxShadow = infoShadow;
+                    opacity = 1;
+                  });
+                },
               ),
             ),
           ),

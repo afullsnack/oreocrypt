@@ -4,6 +4,14 @@ import 'package:oreocrypt/models/user_model.dart';
 
 final Color bgColor = Color(0xF17203C);
 
+final List<BoxShadow> infoShadow = [
+  BoxShadow(
+    blurRadius: 52.5,
+    spreadRadius: 7,
+    offset: Offset(0, -2.5),
+  )
+];
+
 final List<Map<String, dynamic>> assets = [
   {
     "name": "Bitcoin",
