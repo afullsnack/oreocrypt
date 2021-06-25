@@ -88,13 +88,13 @@ class PortfolioScreen extends StatelessWidget {
                   return GestureDetector(
                     onTap: () async {
                       var data = await getPositionSize(key);
-                      print(data["position"]);
+                      // print(data["position"]);
                       Navigator.push(
                         context,
                         PageRouteBuilder(
                           transitionDuration: Duration(milliseconds: 100),
                           reverseTransitionDuration:
-                              Duration(milliseconds: 500),
+                              Duration(milliseconds: 600),
                           transitionsBuilder:
                               (context, animation, secAnimation, child) {
                             animation = CurvedAnimation(

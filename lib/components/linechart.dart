@@ -21,21 +21,20 @@ class _CustomLineChartState extends State<CustomLineChart> {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: AlignmentDirectional.bottomCenter,
       children: <Widget>[
-        AspectRatio(
-          aspectRatio: 1.70,
-          child: Container(
-            decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(18),
-                ),
-                color: Color(0xff232d37)),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  right: 18.0, left: 12.0, top: 24, bottom: 12),
-              child: LineChart(
-                showAvg ? avgData() : mainData(),
-              ),
+        Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(
+              Radius.circular(18),
+            ),
+            color: Colors.white,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(
+                right: 18.0, left: 12.0, top: 90, bottom: 12),
+            child: LineChart(
+              showAvg ? avgData() : mainData(),
             ),
           ),
         ),
@@ -51,9 +50,7 @@ class _CustomLineChartState extends State<CustomLineChart> {
             child: Text(
               'avg',
               style: TextStyle(
-                  fontSize: 12,
-                  color:
-                      showAvg ? Colors.white.withOpacity(0.5) : Colors.white),
+                  fontSize: 12, color: showAvg ? Colors.red : Colors.green),
             ),
           ),
         ),
@@ -64,7 +61,7 @@ class _CustomLineChartState extends State<CustomLineChart> {
   LineChartData mainData() {
     return LineChartData(
       gridData: FlGridData(
-        show: true,
+        show: false,
         drawVerticalLine: true,
         getDrawingHorizontalLine: (value) {
           return FlLine(
