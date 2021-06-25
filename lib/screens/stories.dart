@@ -72,7 +72,7 @@ class StoriesScreen extends StatelessWidget {
                     children: [
                       StoryRing(
                         radius: 55,
-                        ringColors: [Colors.white, Colors.grey[400]],
+                        ringColors: [Colors.white, Colors.grey[400]!],
                       ),
                       Icon(
                         CupertinoIcons.bell,

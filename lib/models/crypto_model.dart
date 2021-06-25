@@ -6,8 +6,8 @@ class Crypto {
   final double coinPrice;
 
   Crypto({
-    @required this.coinName,
-    @required this.coinCode,
-    @required this.coinPrice,
+    required this.coinName,
+    required this.coinCode,
+    required this.coinPrice,
   });
 }

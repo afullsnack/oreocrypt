@@ -6,7 +6,7 @@ class CoinPill extends StatefulWidget {
   final Map asset;
   final Key containerkey;
 
-  CoinPill({Key key, this.asset, @required this.containerkey})
+  CoinPill({Key? key, required this.asset, required this.containerkey})
       : super(key: key);
 
   @override

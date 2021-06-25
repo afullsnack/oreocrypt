@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Navigation extends StatefulWidget {
-  final int pageIndex;
-  final Function onPageChange;
-  const Navigation({Key key, this.pageIndex, this.onPageChange})
+  final int? pageIndex;
+  final Function? onPageChange;
+  const Navigation({Key? key, this.pageIndex, this.onPageChange})
       : super(key: key);
 
   @override
@@ -19,25 +19,25 @@ class _NavigationState extends State<Navigation> {
         NavButton(
           icon: Icons.bar_chart,
           seletectedPage: 0,
-          pageNumber: widget.pageIndex,
+          pageNumber: widget.pageIndex!,
           onPressed: () {
-            widget.onPageChange(0);
+            widget.onPageChange!(0);
           },
         ),
         NavButton(
           icon: Icons.bubble_chart_outlined,
           seletectedPage: 1,
-          pageNumber: widget.pageIndex,
+          pageNumber: widget.pageIndex!,
           onPressed: () {
-            widget.onPageChange(1);
+            widget.onPageChange!(1);
           },
         ),
         NavButton(
           icon: Icons.person_outline_sharp,
           seletectedPage: 2,
-          pageNumber: widget.pageIndex,
+          pageNumber: widget.pageIndex!,
           onPressed: () {
-            widget.onPageChange(2);
+            widget.onPageChange!(2);
           },
         )
       ],
@@ -46,10 +46,10 @@ class _NavigationState extends State<Navigation> {
 }
 
 class NavButton extends StatelessWidget {
-  final IconData icon;
-  final int seletectedPage;
-  final int pageNumber;
-  final Function onPressed;
+  final IconData? icon;
+  final int? seletectedPage;
+  final int? pageNumber;
+  final Function? onPressed;
 
   NavButton({this.icon, this.seletectedPage, this.pageNumber, this.onPressed});
 
@@ -58,7 +58,9 @@ class NavButton extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: GestureDetector(
-        onTap: onPressed,
+        onTap: () {
+          onPressed!();
+        },
         child: Icon(
           icon,
           size: seletectedPage == pageNumber ? 40 : 30,

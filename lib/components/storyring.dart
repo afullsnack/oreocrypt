@@ -4,7 +4,7 @@ import 'package:oreocrypt/global.dart';
 class StoryRing extends StatelessWidget {
   final double radius;
   final List<Color> ringColors;
-  StoryRing({@required this.radius, @required this.ringColors});
+  StoryRing({required this.radius, required this.ringColors});
 
   @override
   Widget build(BuildContext context) {

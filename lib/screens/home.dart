@@ -16,9 +16,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with TickerProviderStateMixin {
   int _selectedPage = 0;
-  PageController _pageController;
-  Offset pillPosition;
-  Size pillSize;
+  late PageController _pageController;
+  late Offset pillPosition;
+  late Size pillSize;
 
   void _changePage(int pageNum) {
     setState(() {
@@ -33,7 +33,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   Map<String, dynamic> getCoinPillPosition(GlobalKey key) {
     // WidgetsBinding.instance.addPostFrameCallback((_) {
-    final RenderBox box = key.currentContext.findRenderObject();
+    final RenderBox box = key.currentContext!.findRenderObject() as RenderBox;
 
     setState(() {
       pillPosition = box.localToGlobal(Offset.zero);

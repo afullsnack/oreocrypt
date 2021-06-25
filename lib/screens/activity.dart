@@ -3,7 +3,7 @@ import 'package:oreocrypt/components/navigation.dart';
 import 'package:oreocrypt/global.dart';
 
 class ActivityScreen extends StatelessWidget {
-  const ActivityScreen({Key key}) : super(key: key);
+  const ActivityScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

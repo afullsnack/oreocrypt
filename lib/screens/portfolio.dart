@@ -6,7 +6,8 @@ import 'package:oreocrypt/global.dart';
 
 class PortfolioScreen extends StatelessWidget {
   final Function getPositionSize;
-  const PortfolioScreen({Key key, this.getPositionSize}) : super(key: key);
+  const PortfolioScreen({Key? key, required this.getPositionSize})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class PortfolioScreen extends StatelessWidget {
                 Text(
                   '\$68.72',
                   style: TextStyle(
-                    color: Colors.greenAccent[700].withOpacity(.7),
+                    color: Colors.greenAccent[700]?.withOpacity(.7),
                     fontSize: 21,
                     letterSpacing: 1,
                     fontWeight: FontWeight.bold,

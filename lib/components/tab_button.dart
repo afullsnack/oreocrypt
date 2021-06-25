@@ -5,14 +5,15 @@ class TabButton extends StatelessWidget {
   final Color textColor;
   final int seletectedPage;
   final int pageNumber;
-  final Function onPressed;
+  final Function? onPressed;
 
-  TabButton(
-      {this.text,
-      this.textColor,
-      this.seletectedPage,
-      this.pageNumber,
-      this.onPressed});
+  TabButton({
+    required this.text,
+    required this.textColor,
+    required this.seletectedPage,
+    required this.pageNumber,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,9 @@ class TabButton extends StatelessWidget {
       child: Column(
         children: [
           TextButton(
-            onPressed: onPressed,
+            onPressed: () {
+              onPressed!();
+            },
             child: Text(
               '$text',
               style: TextStyle(

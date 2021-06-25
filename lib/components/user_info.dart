@@ -6,8 +6,8 @@ class UserInfo extends StatelessWidget {
   final User user;
 
   const UserInfo({
-    Key key,
-    @required this.user,
+    Key? key,
+    required this.user,
   }) : super(key: key);
 
   @override

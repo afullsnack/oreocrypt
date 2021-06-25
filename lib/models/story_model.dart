@@ -8,7 +8,7 @@ enum MediaType {
 }
 
 class Story {
-  final String id;
+  final String? id;
   final String url;
   final String postTime;
   final MediaType media;
@@ -17,10 +17,10 @@ class Story {
 
   Story({
     this.id,
-    @required this.url,
-    @required this.postTime,
-    @required this.media,
-    @required this.duration,
-    @required this.user,
+    required this.url,
+    required this.postTime,
+    required this.media,
+    required this.duration,
+    required this.user,
   });
 }

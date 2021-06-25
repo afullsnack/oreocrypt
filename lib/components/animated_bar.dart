@@ -6,10 +6,10 @@ class AnimatedBar extends StatelessWidget {
   final int currentIndex;
 
   const AnimatedBar({
-    Key key,
-    @required this.animController,
-    @required this.position,
-    @required this.currentIndex,
+    Key? key,
+    required this.animController,
+    required this.position,
+    required this.currentIndex,
   }) : super(key: key);
 
   @override

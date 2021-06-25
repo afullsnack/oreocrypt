@@ -4,7 +4,8 @@ import 'package:oreocrypt/global.dart';
 class FullCoinPill extends StatefulWidget {
   final Size size;
   final Offset position;
-  const FullCoinPill({Key key, this.size, this.position}) : super(key: key);
+  const FullCoinPill({Key? key, required this.size, required this.position})
+      : super(key: key);
 
   @override
   _FullCoinPillState createState() => _FullCoinPillState();
@@ -12,7 +13,7 @@ class FullCoinPill extends StatefulWidget {
 
 class _FullCoinPillState extends State<FullCoinPill>
     with TickerProviderStateMixin {
-  double top, left, width, height, borderRadius, opacity;
+  late double top, left, width, height, borderRadius, opacity;
   dynamic boxShadow;
   @override
   void initState() {
@@ -73,6 +74,7 @@ class _FullCoinPillState extends State<FullCoinPill>
                   color: Colors.amberAccent[100],
                   borderRadius: BorderRadius.circular(15),
                 ),
+                child: Placeholder(),
               ),
             ),
           ),
