@@ -100,40 +100,42 @@ class _FullCoinPillState extends State<FullCoinPill>
                     });
             },
             duration: Duration(milliseconds: 200),
-            child: GestureDetector(
-              onTap: () {
-                _reversAnimation();
-                Navigator.pop(context);
-              },
-              child: AnimatedContainer(
-                duration: Duration(milliseconds: 200),
-                width: width - 10,
-                height: height,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(borderRadius),
-                  color: Colors.white,
-                  boxShadow: boxShadow,
-                ),
-                onEnd: () {
-                  opacity == 0 && !isReverseAnim
-                      ? setState(() {
-                          boxShadow = infoShadow;
-                          opacity = 1;
-                        })
-                      : setState(() {
-                          boxShadow = infoShadow;
-                        });
-                },
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 200),
+              width: width - 10,
+              height: height,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(borderRadius),
+                color: Colors.white,
+                boxShadow: boxShadow,
               ),
+              onEnd: () {
+                opacity == 0 && !isReverseAnim
+                    ? setState(() {
+                        boxShadow = infoShadow;
+                        opacity = 1;
+                      })
+                    : setState(() {
+                        boxShadow = infoShadow;
+                      });
+              },
             ),
           ),
           Positioned(
-              bottom: 50,
-              left: MediaQuery.of(context).size.width / 2,
-              child: Icon(
-                Icons.arrow_back_rounded,
-                color: Colors.white,
-                size: 24,
+              bottom: 45,
+              left: MediaQuery.of(context).size.width / 2 - 17,
+              child: InkWell(
+                radius: 70,
+                borderRadius: BorderRadius.circular(100),
+                onTap: () {
+                  _reversAnimation();
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.arrow_back_rounded,
+                  color: Colors.white,
+                  size: 40,
+                ),
               ))
         ],
       ),
