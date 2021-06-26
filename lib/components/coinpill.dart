@@ -48,7 +48,7 @@ class _CoinPillState extends State<CoinPill> {
           // width: 90.0,
           key: widget.containerkey,
           height: (heightFromBalance * 3) < 100 ? 120 : heightFromBalance * 3,
-          padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 25.0),
+          padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
           margin: EdgeInsets.all(10.0),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -57,7 +57,20 @@ class _CoinPillState extends State<CoinPill> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(assetIcon),
+              Container(
+                width: 42,
+                height: 42,
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Colors.amber,
+                ),
+                child: FittedBox(
+                    child: Icon(
+                  assetIcon,
+                  color: Colors.blueGrey[900],
+                )),
+              ),
               Icon(
                 (heightFromBalance * 3) < 100
                     ? Icons.arrow_circle_down_rounded

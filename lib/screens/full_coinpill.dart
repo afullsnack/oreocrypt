@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oreocrypt/components/linechart.dart';
+import 'package:oreocrypt/components/navigation.dart';
 import 'package:oreocrypt/global.dart';
 
 class FullCoinPill extends StatefulWidget {
@@ -126,6 +127,14 @@ class _FullCoinPillState extends State<FullCoinPill>
               ),
             ),
           ),
+          Positioned(
+              bottom: 50,
+              left: MediaQuery.of(context).size.width / 2,
+              child: Icon(
+                Icons.arrow_back_rounded,
+                color: Colors.white,
+                size: 24,
+              ))
         ],
       ),
     );
