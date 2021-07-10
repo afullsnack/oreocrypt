@@ -4,13 +4,65 @@ import 'package:oreocrypt/components/coinpill.dart';
 import 'package:oreocrypt/screens/full_coinpill.dart';
 import 'package:oreocrypt/global.dart';
 
-class PortfolioScreen extends StatelessWidget {
+class PortfolioScreen extends StatefulWidget {
   final Function getPositionSize;
   const PortfolioScreen({Key? key, required this.getPositionSize})
       : super(key: key);
 
   @override
+  _PortfolioScreenState createState() => _PortfolioScreenState();
+}
+
+class _PortfolioScreenState extends State<PortfolioScreen> {
+  int _selectedPage = 0;
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    _pageController = PageController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _changePage(int pageNum) {
+    setState(() {
+      _selectedPage = pageNum;
+      _pageController.animateToPage(
+        pageNum,
+        duration: Duration(milliseconds: 400),
+        curve: Curves.fastLinearToSlowEaseIn,
+      );
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      child: PageView(
+        clipBehavior: Clip.antiAlias,
+        // physics: NeverScrollableScrollPhysics(),
+        onPageChanged: (page) {
+          setState(() {
+            _selectedPage = page;
+          });
+        },
+        controller: _pageController,
+
+        // Column(
+        children:
+            List.generate(2, (index) => buildExchangePortfolio(_selectedPage)),
+      ),
+    );
+  }
+
+  Widget buildExchangePortfolio(currentPage) {
     var formater = NumberFormat.decimalPattern('hi');
     return Container(
       width: double.infinity,
@@ -82,12 +134,14 @@ class PortfolioScreen extends StatelessWidget {
                 clipBehavior: Clip.hardEdge,
                 scrollDirection: Axis.horizontal,
                 padding: EdgeInsets.all(10.0),
-                itemCount: assets.length,
+                itemCount: currentPage <= 0 ? assets.length : assets2.length,
                 itemBuilder: (context, index) {
-                  final key = new GlobalObjectKey(index);
+                  // Build Global key and pass it the
+                  final finalAssets = currentPage <= 0 ? assets : assets2;
+                  final key = new GlobalObjectKey(finalAssets[index]["code"]);
                   return GestureDetector(
                     onTap: () async {
-                      var data = await getPositionSize(key);
+                      var data = await widget.getPositionSize(key);
                       // print(data["position"]);
                       Navigator.push(
                         context,
@@ -114,7 +168,7 @@ class PortfolioScreen extends StatelessWidget {
                       );
                     },
                     child: CoinPill(
-                      asset: assets[index],
+                      asset: finalAssets[index],
                       containerkey: key,
                     ),
                   );

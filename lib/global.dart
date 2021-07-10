@@ -33,6 +33,9 @@ final List<Map<String, dynamic>> assets = [
     "code": "XMR",
     "amount": 350.23,
   },
+];
+
+final List<Map<String, dynamic>> assets2 = [
   {
     "name": "Dashcoin",
     "code": "DSH",
